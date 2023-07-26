@@ -1,3 +1,88 @@
+async function logProduct(categoryChoose){
+const productAPI = "http://localhost:3000/products";
+  fetch(productAPI)
+.then(function(response){
+  return response.json();
+})
+.then(function(productList){
+  let addProduct = productList.map(function(product){
+    if(product.category === `${categoryChoose}`){
+      return `
+      <div class="grid__col-2-4">
+      <!-- Product item -->
+      <div href="" class="product-item">
+        <div
+          class="product-item__img"
+          style="
+            background-image: url(${product.images[0]});
+          "
+        ></div>
+        <h4 class="product-item__name">
+        ${product.title}
+        </h4>
+        <div class="product-item__price">
+          <span class="product-item__price-old">${Math.floor(product.price/((100 - product.discountPercentage)/100))}$</span>
+          <span class="product-item__price-current">${product.price}$</span>
+        </div>
+  
+        <div class="product-item__action">
+          <span class="product-item__like">
+            <i class="fa-regular fa-heart like-icon-emty"></i>
+            <i class="fa-solid fa-heart like-icon-fill"></i>
+          </span>
+  
+          <div class="product-item__rating">
+            <i
+              class="fa-solid fa-star product-item__rating-gold"
+            ></i>
+            <i
+              class="fa-solid fa-star product-item__rating-gold"
+            ></i>
+            <i
+              class="fa-solid fa-star product-item__rating-gold"
+            ></i>
+            <i
+              class="fa-solid fa-star product-item__rating-gold"
+            ></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+  
+          <span class="product-item__stock">Còn ${product.stock} sản phẩm trong kho</span>
+        </div>
+  
+        <div class="product-item__favorite">
+          <span>Yêu thích</span>
+        </div>
+  
+        <div class="product-item__sale-off">
+          <span class="product-item__sale-off-percent">${product.discountPercentage}%</span>
+          <span class="product-item__sale-off-label">Giảm</span>
+        </div>
+      </div>
+    </div>
+      `
+    }
+  })
+  let productItem = addProduct.join('');
+  document.getElementById('product').innerHTML = productItem;
+})
+}
+let productArr = ['smartphones','laptops','fragrances','skincare','groceries','home-decoration']
+
+// const productsAPI = "http://localhost:3000/products";
+// let postList = fetch(productsAPI)
+// .then((responsive)=>{
+//   return responsive.json();
+// })
+// .then((posts)=>{
+//   return posts;
+// })
+
+// console.log(postList[PromiseResult])
+
+
+
+
 const logChoose = [
   {
     logName: "Đăng ký",
@@ -200,3 +285,5 @@ for (let i in productList) {
     }
   });
 }
+
+

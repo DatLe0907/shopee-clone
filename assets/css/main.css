@@ -1101,7 +1101,7 @@
   padding-top: 100%;
   background-repeat: no-repeat;
   background-size: contain;
-  background-position: top center;
+  background-position: bottom center;
   border-top-right-radius: 2px;
   border-top-left-radius: 2px;
 }
@@ -1144,6 +1144,7 @@
   display: flex;
   justify-content: space-between;
   margin: 6px 10px 0;
+  flex-wrap: wrap;
 }
 
 .product-item__like {
@@ -1168,10 +1169,9 @@
   color: var(--star-color);
 }
 
-.product-item__sold {
+.product-item__stock {
   font-size: 1.2rem;
   color: var(--text-color);
-  margin-left: 6px;
   font-weight: 500;
 }
 
